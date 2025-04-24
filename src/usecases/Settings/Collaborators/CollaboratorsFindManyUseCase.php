@@ -4,7 +4,6 @@ namespace Vertuoza\Usecases\Settings\Collaborators;
 
 use React\Promise\Promise;
 use Vertuoza\Api\Graphql\Context\UserRequestContext;
-use Vertuoza\Repositories\Repositories;
 use Vertuoza\Repositories\Settings\Collaborators\CollaboratorRepository;
 use Vertuoza\Entities\Settings\CollaboratorEntity;
 use Vertuoza\Repositories\RepositoriesFactory;
