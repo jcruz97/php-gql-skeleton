@@ -14,7 +14,7 @@ class UnitTypeMutation extends ObjectType
   {
     return [
       'unitTypeCreate' => [
-        'type' => Types::get(UnitType::class),
+        'type' => Type::nonNull(Types::get(UnitType::class)),
         'args' => [
           'input' => Type::nonNull(Types::get(UnitTypeCreateInputType::class)),
         ],
