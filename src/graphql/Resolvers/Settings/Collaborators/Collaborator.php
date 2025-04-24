@@ -16,7 +16,7 @@ class Collaborator extends ObjectType
       'fields' => static fn (): array => [
         'id' => [
           'description' => "Unique identifier of the collaborator",
-          'type' => Types::id(),
+          'type' => new NonNull(Types::id()),
         ],
         'name' => [
           'description' => "Name of the collaborator",
