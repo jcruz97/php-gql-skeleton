@@ -2,11 +2,12 @@
 
 namespace Vertuoza\Repositories\Settings\UnitTypes;
 
-use Vertuoza\Repositories\BaseRepository;
-use Vertuoza\Repositories\Settings\UnitTypes\Models\UnitTypeMapper;
-use Vertuoza\Repositories\Settings\UnitTypes\Models\UnitTypeModel;
-
+use Ramsey\Uuid\Uuid;
 use function React\Async\async;
+use Vertuoza\Repositories\BaseRepository;
+
+use Vertuoza\Repositories\Settings\UnitTypes\Models\UnitTypeModel;
+use Vertuoza\Repositories\Settings\UnitTypes\Models\UnitTypeMapper;
 
 class UnitTypeRepository extends BaseRepository
 {
@@ -51,15 +52,34 @@ class UnitTypeRepository extends BaseRepository
     )();
   }
 
-  // These could be in BaseRepository if we consider it handling mutations
+  // These methods could be in BaseRepository if we consider it handling mutations
+
+  /**
+   * Create UnitType
+   *
+   * @param UnitTypeMutationData $data
+   * @param string $tenantId
+   *
+   * @return integer|string
+   */
   public function create(UnitTypeMutationData $data, string $tenantId): int|string
   {
-    $newId = $this->getQueryBuilder()->insertGetId(
-      UnitTypeMapper::serializeCreate($data, $tenantId)
-    );
+    $newId = Uuid::uuid4()->toString();
+    $data = array_merge(['id' => $newId], UnitTypeMapper::serializeCreate($data, $tenantId));
+    
+    $this->getQueryBuilder()->insert($data);
+
     return $newId;
   }
 
+  /**
+   * Update UnitType
+   *
+   * @param string $id
+   * @param UnitTypeMutationData $data
+   * 
+   * @return void
+   */
   public function update(string $id, UnitTypeMutationData $data)
   {
     $this->getQueryBuilder()

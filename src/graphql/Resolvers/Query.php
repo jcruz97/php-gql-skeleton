@@ -10,14 +10,14 @@ final class Query extends ObjectType
 {
   public function __construct()
   {
-    $config = [
+    parent::__construct([
+      'name' => 'Query',
       'fields' => function () {
         return [
           ...UnitTypeQuery::get(),
-          ...CollaboratorQuery::get(),
+          ...CollaboratorQuery::get()
         ];
       }
-    ];
-    parent::__construct($config);
+    ]);
   }
 }
