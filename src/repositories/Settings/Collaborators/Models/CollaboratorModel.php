@@ -15,7 +15,7 @@ class CollaboratorModel implements ModelInterface
   public string $tenant_id;
   
   /**
-   * Create standard class into CollaboratorModel
+   * Create CollaboratorModel from standard class
    *
    * @param stdClass $data
    *

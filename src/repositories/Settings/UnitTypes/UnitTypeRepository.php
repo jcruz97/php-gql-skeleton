@@ -11,17 +11,34 @@ use Vertuoza\Repositories\Settings\UnitTypes\Models\UnitTypeMapper;
 
 class UnitTypeRepository extends BaseRepository
 {
+  /**
+   * Return UnitType model class
+   *
+   * @return string
+   */
   protected function getModelClass(): string
   {
     return UnitTypeModel::class;
   }
   
+  /**
+   * Return UnitType mapper class
+   *
+   * @return string
+   */
   protected function getMapperClass(): string
   {
     return UnitTypeMapper::class;
   }
   
-  // Override the base filter method to handle the special tenant condition for UnitTypes
+  /**
+   * Override the base filter method to handle the special tenant condition for UnitTypes
+   * 
+   * @param mixed $query
+   * @param string $tenantId
+   * 
+   * @return mixed modified query
+   */
   protected function applyBaseFilters($query, string $tenantId)
   {
     $query->whereNull('deleted_at');
@@ -34,7 +51,15 @@ class UnitTypeRepository extends BaseRepository
     return $query;
   }
   
-  // Specific method for UnitType
+  /**
+   * Return number of UnitType entities with label field non-null
+   *
+   * @param string $name
+   * @param string $tenantId
+   * @param string|integer|null|null $excludeId
+   * 
+   * @return Promise
+   */
   public function countUnitTypeWithLabel(string $name, string $tenantId, string|int|null $excludeId = null)
   {
     return async(

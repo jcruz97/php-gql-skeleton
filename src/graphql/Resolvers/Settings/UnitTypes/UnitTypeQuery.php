@@ -10,26 +10,26 @@ use Vertuoza\Api\Graphql\Types;
 
 class UnitTypeQuery
 {
-    static function get()
-    {
-        return [
-            'unitTypeById' => [
-                'type' => Types::get(UnitType::class),
-                'args' => [
-                    'id' => new NonNull(Types::id()),
-                ],
-                'resolve' => static fn ($rootValue, $args, RequestContext $context)
-                => $context->useCases->unitType
-                    ->unitTypeById
-                    ->handle($args['id'], $context)
-            ],
-            'unitTypes' => [
-                'type' => new NonNull(new ListOfType(Types::get(UnitType::class))),
-                'resolve' => static fn ($rootValue, $args, RequestContext $context)
-                => $context->useCases->unitType
-                    ->unitTypesFindMany
-                    ->handle($context)
-            ],
-        ];
-    }
+  static function get()
+  {
+    return [
+      'unitTypeById' => [
+        'type' => Types::get(UnitType::class),
+        'args' => [
+          'id' => new NonNull(Types::id()),
+        ],
+        'resolve' => static fn ($rootValue, $args, RequestContext $context)
+          => $context->useCases->unitType
+            ->unitTypeById
+            ->handle($args['id'], $context)
+      ],
+      'unitTypes' => [
+        'type' => new NonNull(new ListOfType(Types::get(UnitType::class))),
+        'resolve' => static fn ($rootValue, $args, RequestContext $context)
+          => $context->useCases->unitType
+            ->unitTypesFindMany
+            ->handle($context)
+      ],
+    ];
+  }
 }

@@ -14,7 +14,7 @@ class UnitTypeModel implements ModelInterface
   public ?string $tenant_id;
 
   /**
-   * Create standard class into UnitTypeModel
+   * Create UnitTypeModel from standard class
    *
    * @param stdClass $data
    *

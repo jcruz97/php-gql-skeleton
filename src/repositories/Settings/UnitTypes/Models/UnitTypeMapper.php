@@ -57,7 +57,7 @@ class UnitTypeMapper
    * 
    * @return array
    */
-  private static function serializeMutation(UnitTypeMutationData $mutation, string $tenantId = null): array
+  private static function serializeMutation(UnitTypeMutationData $mutation, ?string $tenantId = null): array
   {
     $data = [
       'label' => $mutation->name,
