@@ -4,8 +4,9 @@ namespace Vertuoza\Repositories\Settings\Collaborators\Models;
 
 use DateTime;
 use stdClass;
+use Vertuoza\Repositories\ModelInterface;
 
-class CollaboratorModel
+class CollaboratorModel implements ModelInterface
 {
   public string $id;
   public string $name;
@@ -14,7 +15,7 @@ class CollaboratorModel
   public string $tenant_id;
   
   /**
-   * Create class into CollaboratorModel
+   * Create standard class into CollaboratorModel
    *
    * @param stdClass $data
    *
